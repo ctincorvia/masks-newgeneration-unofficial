@@ -21,7 +21,6 @@
 
   --masks-input-bg-color: rgb(255 255 255 / 75%);
   --masks-input-border-color: rgb(0 0 0 / 75%);
-  --masks-tox-edit-area-bg-color: rgba(255, 255, 255, 0.5);
 
   --masks-resource-border-color: #bcc8de;
   --masks-resource-control-bg-color: #ffffff;
@@ -181,10 +180,6 @@
     background-position: var(--masks-window-bg-position);
     background-repeat: repeat-x;
     background-size: auto;
-  }
-
-  .tox.tox-tinymce .tox-edit-area__iframe {
-    background: var(--masks-tox-edit-area-bg-color);
   }
 
   .sheet-header__fields {
@@ -582,10 +577,6 @@
     align-items: center;
   }
 
-  .sheet-attributes .cell-npc-text .editor .tox-editor-container {
-    min-height: 150px;
-    height: 100% !important;
-  }
 }
 
 /** Items **/

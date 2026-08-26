@@ -18,7 +18,6 @@
   --masks-tab-bg-active-color: #ffeb98;
   --masks-input-bg-color: rgb(255 255 255 / 75%);
   --masks-input-border-color: rgb(0 0 0 / 75%);
-  --masks-tox-edit-area-bg-color: rgba(255, 255, 255, 0.5);
   --masks-resource-border-color: #bcc8de;
   --masks-resource-control-bg-color: #ffffff;
   --masks-stats-border-color: rgb(229 222 210 / 37%);
@@ -153,9 +152,6 @@
   background-position: var(--masks-window-bg-position);
   background-repeat: repeat-x;
   background-size: auto;
-}
-.pbta.sheet .tox.tox-tinymce .tox-edit-area__iframe {
-  background: var(--masks-tox-edit-area-bg-color);
 }
 .pbta.sheet .sheet-header__fields {
   width: 100%;
@@ -484,10 +480,6 @@
   display: flex;
   align-items: center;
 }
-.pbta.sheet.npc .sheet-attributes .cell-npc-text .editor .tox-editor-container {
-  min-height: 150px;
-  height: 100% !important;
-}
 
 /** Items **/
 .pbta.sheet.item.playbook {
@@ -557,5 +549,3 @@
 .pbta.sheet .editor-content .playbook .extras {
   margin-top: 30px;
 }
-
-/*# sourceMappingURL=masks-sheets.css.map */

@@ -4,6 +4,7 @@ import { MasksActorSheetMixin } from './sheets/actor-sheet.mjs';
 
 Hooks.once("init", () => {
     const masksActorSheet = MasksActorSheetMixin(game.pbta.applications.actor.PbtaActorSheet);
+    const Actors = foundry.documents.collections.Actors;
     Actors.unregisterSheet('pbta', game.pbta.applications.actor.PbtaActorSheet, { types: ['character'] });
     Actors.registerSheet('pbta', masksActorSheet, {
         types: ['character'],
@@ -26,7 +27,7 @@ Hooks.once("init", () => {
 		var link = document.createElement('link');
 		link.rel = 'stylesheet';
 		link.type = 'text/css';
-		link.href = './modules/masks-newgeneration-unofficial/css/dark-mode.css';
+		link.href = foundry.utils.getRoute('modules/masks-newgeneration-unofficial/css/dark-mode.css');
 		//Append link element to HTML head
 		head.appendChild(link);
 	}
@@ -63,10 +64,10 @@ Hooks.once('ready', async function () {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(worldData),
                 });
-                if (response.error) {
-                        ui.notifications.error(response.error);
-                } else if (!response) {
-                        game.world.updateSource(response);
+                if (response && response.error) {
+                    ui.notifications.error(response.error);
+                } else if (response) {
+                    game.world.updateSource(response);
                 }
             } catch (e) {
                 return ui.notifications.error(e);
@@ -95,9 +96,9 @@ Hooks.once('ready', async function () {
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(worldData),
                     });
-                    if (response.error) {
+                    if (response && response.error) {
                         ui.notifications.error(response.error);
-                    } else if (!response) {
+                    } else if (response) {
                         game.world.updateSource(response);
                     }
                 } catch (e) {
@@ -132,12 +133,17 @@ Hooks.once('pbtaSheetConfig', () => {
     }
 });
 
-Hooks.on("preCreateActor", async function (document) {
+Hooks.on("preCreateActor", function (document, data, options, userId) {
     if (document.type === 'character') {
         document.updateSource({'flags.masks-newgeneration-unofficial.influences': []});
     }
 });
 
+// "renderActorSheet" and the jQuery `html[0]` access below only fire because PbtA's
+// actor sheet is still ApplicationV1 (see game.pbta.applications.actor.PbtaActorSheet).
+// If PbtA migrates to ApplicationV2, this hook renames to "renderActorSheetV2" and
+// `html` becomes a raw HTMLElement — this whole Influences feature would then silently
+// stop firing with no error.
 Hooks.on("renderActorSheet", async (app, html) => {
     if (app.actor.type === "character") {
 
@@ -279,41 +285,23 @@ Hooks.on("renderSettings", (app, html) => {
         return button;
     });
     
-    // --- Version Specific Logic (Reusable) ---
-    if (game.release.generation >= 13) {
-        // V13+ Logic: Insert after the "Documentation" section
-        const documentationSection = html.querySelector("section.documentation");
-        if (documentationSection) {
-            // Create section wrapper
-            const section = document.createElement("section");
-            section.classList.add(MODULE_CONFIG.sectionClass, "flexcol");
+    // --- Insert after the "Documentation" section
+    const documentationSection = html.querySelector("section.documentation");
+    if (documentationSection) {
+        // Create section wrapper
+        const section = document.createElement("section");
+        section.classList.add(MODULE_CONFIG.sectionClass, "flexcol");
 
-            const divider = document.createElement("h4");
-            divider.classList.add("divider");
-            divider.textContent = game.i18n.localize(MODULE_CONFIG.headingKey);
+        const divider = document.createElement("h4");
+        divider.classList.add("divider");
+        divider.textContent = game.i18n.localize(MODULE_CONFIG.headingKey);
 
-            // Append divider and buttons to section
-            section.append(divider, ...buttons);
-            
-            // Insert section before documentation
-            documentationSection.before(section);
-        } else {
-            console.warn(`${game.i18n.localize(MODULE_CONFIG.headingKey)} | Could not find 'section.documentation' in V13 settings panel.`);
-        }
+        // Append divider and buttons to section
+        section.append(divider, ...buttons);
+
+        // Insert section before documentation
+        documentationSection.before(section);
     } else {
-        // V12 Logic: Insert after the "Game Settings" section
-        const gameSettingsSection = html[0].querySelector("#settings-game");
-        if (gameSettingsSection) {
-			const header = document.createElement("h2");
-			header.innerText = game.i18n.localize(MODULE_CONFIG.headingKey);
-
-			const settingsDiv = document.createElement("div");
-			settingsDiv.append(...buttons);
-
-			// Insert the header and the div containing buttons after the game settings section
-			gameSettingsSection.after(header, settingsDiv);
-        } else {
-            console.warn(`${game.i18n.localize(MODULE_CONFIG.headingKey)} | Could not find '#settings-game' section in V12 settings panel.`);
-        }
+        console.warn(`${game.i18n.localize(MODULE_CONFIG.headingKey)} | Could not find 'section.documentation' in settings panel.`);
     }
 });

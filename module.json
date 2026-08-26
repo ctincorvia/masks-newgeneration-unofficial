@@ -4,9 +4,8 @@
 	"description": "Masks: A New Generation from Magpie Games (unofficial)",
 	"version": "#{VERSION}#",
 	"compatibility": {
-		"minimum": 13,
-		"verified": 13.346,
-		"maximum": 13
+		"minimum": "14",
+		"verified": "14.367"
 	},
 	"authors": [
 		{
@@ -341,7 +340,7 @@
 				"id": "pbta",
 				"type": "system",
 				"compatibility": {
-					"minimum": "1.1.16"
+					"minimum": "1.2.0"
 				}
 			}
 		]

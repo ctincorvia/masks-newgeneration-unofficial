@@ -1,6 +1,12 @@
-#1.8.0
-- Foundry v13 support added
-- This version ONLY works with Foundry v13+ and PbtA v1.1.16+
+#1.9.0
+- Foundry v14 support added
+- This version ONLY works with Foundry v14+ and PbtA v1.2.0+
+- Namespaced deprecated globals (`loadTemplates`, `Actors`) ahead of their v15 removal
+- Removed the dead Foundry v12 branch from the settings sidebar integration
+- Removed unused TinyMCE styling (TinyMCE was removed from Foundry in v13; ProseMirror is now the only editor)
+- Fixed the login screen background never actually applying, due to an inverted response check
+- If you use Foundry v13:
+    - use PbtA v1.1.23 with Masks v1.8.x
 - If you use Foundry v12: 
     - use PbtA v1.1.15 with Masks v1.7.6
 - If you use Foundry v11: 

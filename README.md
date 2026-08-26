@@ -1,7 +1,7 @@
 ![Cover](images/cover.webp)
 
 <p align="center">
-    <img alt="Foundry Version 13 support" src="https://img.shields.io/badge/Foundry-v13-informational">
+    <img alt="Foundry Version 14 support" src="https://img.shields.io/badge/Foundry-v14-informational">
     <img alt="Latest Release Download Count" src="https://img.shields.io/github/downloads/philote/masks-newgeneration-unofficial/latest/total"> 
     <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/philote/masks-newgeneration-unofficial"> 
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/philote/masks-newgeneration-unofficial">
@@ -44,8 +44,10 @@ If you’ve enjoyed my work and find value in what I create, please consider sup
 The following Foundry VTT game system must be installed to use this module: [Powered by the Apocalypse](https://github.com/asacolips-projects/pbta).
 
 > [!WARNING]
-> ### Masks V1.8+
-> **ONLY** works with Foundry v13+ and PbtA v1.1.16+
+> ### Masks V1.9+
+> **ONLY** works with Foundry v14+ and PbtA v1.2.0+
+#### If you use Foundry v13:
+- use PbtA [v1.1.23](https://github.com/asacolips-projects/pbta/releases/tag/1.1.23) with Masks [v1.8.x](https://github.com/philote/masks-newgeneration-unofficial/releases)
 #### If you use Foundry v12: 
 - use PbtA [v1.1.15.2](https://github.com/asacolips-projects/pbta/releases/tag/1.1.15.2) with Masks [v1.7.6](https://github.com/philote/masks-newgeneration-unofficial/releases/tag/1.7.6)
 #### If you use Foundry v11: 
@@ -77,7 +79,7 @@ The following Foundry VTT game system must be installed to use this module: [Pow
 This module is listed in the Foundry module directory and can be searched and installed within the application.
 
 ## Manual Instalation
-Go to **modules** and use this link: https://raw.githubusercontent.com/CyricPL/masks-newgeneration-unofficial-revised/main/module.json
+Go to **modules** and use this link: https://raw.githubusercontent.com/philote/masks-newgeneration-unofficial/main/module.json
 
 # How To
 1. Activate the module.
