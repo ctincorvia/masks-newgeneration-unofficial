@@ -549,3 +549,26 @@
 .pbta.sheet .editor-content .playbook .extras {
   margin-top: 30px;
 }
+
+/** Chat cards **/
+.pbta-chat-card .result-details li h4,
+.pbta-chat-card .result-choices li h4 {
+  font-size: var(--font-size-13);
+  font-weight: normal;
+  margin: 4px 0;
+}
+.pbta-chat-card .result-details li .content-link,
+.pbta-chat-card .result-choices li .content-link {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.pbta-chat-card .card-buttons {
+  justify-content: center;
+  gap: 8px;
+}
+.pbta-chat-card .card-buttons button {
+  flex: 1 1 0;
+}
+.pbta-chat-card .card-buttons button:hover {
+  color: var(--masks-secondary-text-color);
+}

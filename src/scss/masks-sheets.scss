@@ -640,7 +640,7 @@
       color: #ae0000;
       font-weight: bold;
     }
-  
+
     .rules {
       // background-color: green;
       display: flex;
@@ -658,9 +658,41 @@
         }
       }
     }
-  
+
     .extras {
       margin-top: 30px;
+    }
+  }
+}
+
+/** Chat cards **/
+.pbta-chat-card {
+  .result-details,
+  .result-choices {
+    li {
+      h4 {
+        font-size: var(--font-size-13);
+        font-weight: normal;
+        margin: 4px 0;
+      }
+
+      .content-link {
+        white-space: normal;
+        overflow-wrap: anywhere;
+      }
+    }
+  }
+
+  .card-buttons {
+    justify-content: center;
+    gap: 8px;
+
+    button {
+      flex: 1 1 0;
+
+      &:hover {
+        color: var(--masks-secondary-text-color);
+      }
     }
   }
 }
